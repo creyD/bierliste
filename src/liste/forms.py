@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student
+from .models import Student, Item
 
 
 class UpdateStudent(forms.ModelForm):
@@ -11,8 +11,12 @@ class UpdateStudent(forms.ModelForm):
         super(UpdateStudent, self).__init__(*args, **kwargs)
         self.fields['nickname'].required = False
         self.fields['card_ID'].required = False
-        self.fields['nickname'].label = 'Name'
-        self.fields['card_ID'].label = 'Kartennummer'
+
+
+class CreateItem(forms.ModelForm):
+    class Meta:
+        model = Item
+        exclude = ['item_ID']
 
 
 class UpdateName(forms.Form):

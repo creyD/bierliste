@@ -9,5 +9,7 @@ urlpatterns = [
     path('settings/', views.settings, name="settings"),
     path('add/<int:card_number>', views.student_add, name="addStudent"),
     path('confirm/<int:student_ID>', views.student_confirm, name="addName"),
-    path('update/<int:student_ID>', views.student_edit, name="updateStudent")
+    path('update/<int:student_ID>', views.student_edit, name="updateStudent"),
+    path('add-item/', views.createItem, name="addItem"),
+    path('ranking/', views.ranking, name="ranking")
 ]

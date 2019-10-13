@@ -9,7 +9,7 @@ class Student(admin.ModelAdmin):
 
 @admin.register(Item)
 class Item(admin.ModelAdmin):
-    list_display = ('item_ID', 'item_name', 'item_price', 'category')
+    list_display = ('item_ID', 'item_name', 'item_price', 'category', 'beer')
 
 
 @admin.register(StudentItems)

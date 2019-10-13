@@ -1,0 +1,5 @@
+<form role="from" id="settingsForm" method="post" action="{% url 'addItem' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Produkt Erstellen</button>
+</form>
