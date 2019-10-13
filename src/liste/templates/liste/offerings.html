@@ -1,0 +1,5 @@
+Aktueller Kunde: #{{ student.student_ID }} {{ student.nickname }}
+
+{% for item in offerings %}
+  <a href="{% url 'order' student.student_ID item.item_ID count %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
+{% endfor %}

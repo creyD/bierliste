@@ -1,0 +1,14 @@
+{% if created %}
+Student #{{ student.student_ID }} erfolgreich angelegt.
+{% else %}
+Student #{{ student.student_ID }} bereits in der Datenbank.
+{% endif %}
+Kartennummer: {{ student.card_ID }}
+
+<form role="from" id="settingsForm" method="post" action="{% url 'addName' student.student_ID %}" enctype="multipart/form-data">
+{% csrf_token %}
+Namen eingeben: {{ form }}
+<button type="submit">Bestätigen</button>
+</form>
+
+<a href="{% url 'home' %}"><button>Zurück zum Hauptbildschirm</button></a>

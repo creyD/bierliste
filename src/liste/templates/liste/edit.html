@@ -1,0 +1,5 @@
+<form role="from" id="settingsForm" method="post" action="{% url 'updateStudent' student.student_ID %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Bestätigen</button>
+</form>

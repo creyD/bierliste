@@ -2,9 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Home</title>
   </head>
   <body>
-
+    <a href="{% url 'offerings' 0 %}"><button>Gast</button></a>
+    <a href="{% url 'person_select' %}"><button>+</button></a>
+    <a href="{% url 'settings' %}"><button>Einstellungen</button></a>
   </body>
 </html>
