@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.startbildschirm, name="home"),
     path('offerings/<int:student_ID>', views.offerings, name="offerings"),
     path('students/', views.student_overview, name="person_select"),
+    path('order/<int:student_ID>/<int:item_ID>', views.selector, name="selector"),
     path('order/<int:student_ID>/<int:item_ID>_<int:count>', views.order, name="order"),
     path('settings/', views.settings, name="settings"),
     path('add/<int:card_number>', views.student_add, name="addStudent"),

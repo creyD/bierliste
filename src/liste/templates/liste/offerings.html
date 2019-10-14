@@ -1,5 +1,41 @@
-Aktueller Kunde: #{{ student.student_ID }} {{ student.nickname }}
 
+<style media="screen">
+  .hidden{
+    visibility: hidden;
+  }
+</style>
+<script type="text/javascript">
+  function changeView(){
+    var container_1 = document.getElementById('first_page');
+    var container_2 = document.getElementById('second_page');
+
+    if (container_1.className == 'hidden'){
+      container_1.className = '';
+      container_2.className = 'hidden';
+    } else {
+      container_1.className = 'hidden';
+      container_2.className = '';
+    }
+  }
+</script>
+
+Aktueller Kunde: #{{ student.student_ID }} {% if student.nickname %}{{ student.nickname }}{% endif %}
+<br>
+
+<div id="first_page">
 {% for item in offerings %}
-  <a href="{% url 'order' student.student_ID item.item_ID 1 %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
+  {% if item.category == True %}
+    <a href="{% url 'selector' student.student_ID item.item_ID %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
+  {% endif %}
 {% endfor %}
+</div>
+
+<div id="second_page" class="hidden">
+  {% for item in offerings %}
+    {% if item.category == False %}
+      <a href="{% url 'selector' student.student_ID item.item_ID %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<button onclick="changeView()">-></button>

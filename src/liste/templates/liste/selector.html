@@ -1,0 +1,23 @@
+<script type="text/javascript">
+    function minus(){
+      if (document.getElementById('number').value > 1){
+        document.getElementById('number').value--;
+      }
+    }
+
+    function plus(){
+      document.getElementById('number').value++;
+    }
+
+    function confirm(){
+      var item_count = document.getElementById('number').value;
+      window.location = {{ item_ID }} + '_' + item_count;
+    }
+</script>
+
+Menge wählen:
+<button onclick="minus()">-</button><input value="1" id="number" type="text"></input><button onclick="plus()">+</button>
+
+<button onclick="confirm()">Bestätigen</button>
+
+<button>Zurück zur Startseite</button>

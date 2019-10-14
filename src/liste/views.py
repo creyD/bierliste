@@ -86,3 +86,7 @@ def ranking(request):
                 }
     beer_list_sorted = sorted(beer_list.items(), key=lambda x: x[1]['bier_count'])
     return render(request, 'liste/bierliste.html', {'bierliste': beer_list_sorted})
+
+
+def selector(request, student_ID, item_ID):
+    return render(request, 'liste/selector.html', {'student_ID': student_ID, 'item_ID': item_ID})
