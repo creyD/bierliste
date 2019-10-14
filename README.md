@@ -51,4 +51,4 @@ You may add yourself here.
 
 # Fehler/ Bugs
 
-Bitte fehler <a href="issues">hier melden</a>. Please report bugs <a href="issues">here.</a>
+Bitte fehler <a href="https://github.com/creyD/bierliste/issues">hier melden</a>. Please report bugs <a href="https://github.com/creyD/bierliste/issues">here.</a>

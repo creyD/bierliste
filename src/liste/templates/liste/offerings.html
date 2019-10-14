@@ -1,9 +1,8 @@
+{% extends 'master.html' %}
 
-<style media="screen">
-  .hidden{
-    visibility: hidden;
-  }
-</style>
+{% block title %}Bierliste - Angebot{% endblock %}
+
+{% block header %}
 <script type="text/javascript">
   function changeView(){
     var container_1 = document.getElementById('first_page');
@@ -18,24 +17,33 @@
     }
   }
 </script>
+{% endblock %}
 
-Aktueller Kunde: #{{ student.student_ID }} {% if student.nickname %}{{ student.nickname }}{% endif %}
-<br>
+{% block content %}
+  <style media="screen">
+    .hidden{
+      visibility: hidden;
+    }
+  </style>
 
-<div id="first_page">
-{% for item in offerings %}
-  {% if item.category == True %}
-    <a href="{% url 'selector' student.student_ID item.item_ID %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
-  {% endif %}
-{% endfor %}
-</div>
+  Aktueller Kunde: #{{ student.student_ID }} {% if student.nickname %}{{ student.nickname }}{% endif %}
+  <br>
 
-<div id="second_page" class="hidden">
+  <div id="first_page">
   {% for item in offerings %}
-    {% if item.category == False %}
+    {% if item.category == True %}
       <a href="{% url 'selector' student.student_ID item.item_ID %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
     {% endif %}
   {% endfor %}
-</div>
+  </div>
 
-<button onclick="changeView()">-></button>
+  <div id="second_page" class="hidden">
+    {% for item in offerings %}
+      {% if item.category == False %}
+        <a href="{% url 'selector' student.student_ID item.item_ID %}"><button>{{ item.item_name }} {{ item.item_price }}</button></a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <button onclick="changeView()">-></button>
+{% endblock %}

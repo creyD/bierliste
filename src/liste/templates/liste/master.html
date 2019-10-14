@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+	<!-- Title of the HTML page -->
+	<title>{% block title %}{% endblock %}</title>
+	<!-- Viewport for a pleasant mobile experience -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Charset for compatability and stability -->
+	<meta charset="utf-8">
+	<!-- SE indexing -->
+	<meta name="robots" content="noindex, nofollow" />
+	<!-- Load the default master.css for some values -->
+	<link rel="stylesheet" href="{% static 'css/master.css' %}">
+	<!-- Add the favicon to the page -->
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'css/icon.ico' %}">
+	<!-- JQuery for easier HTML manipulation -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- Add the favicon to the page -->
+	<link rel="shortcut icon" type="image/x-icon" href="">
+
+	{% block header %}
+    <!-- If a template needs to have something (scripts...) in the header -->
+	{% endblock %}
+</head>
+
+<body>
+  {% block content %}
+
+  {% endblock %}
+
+	{% block scripts %}
+
+	{% endblock %}
+</body>
+</html>

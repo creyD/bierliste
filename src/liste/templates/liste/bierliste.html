@@ -1,3 +1,9 @@
-{% for key, dude in bierliste reversed %}
-  {{ dude.nickname }}: {{ dude.bier_count }}<br>
-{% endfor %}
+{% extends 'master.html' %}
+
+{% block title %}BierRanking{% endblock %}
+
+{% block content %}
+  {% for key, dude in bierliste reversed %}
+    {{ dude.nickname }}: {{ dude.bier_count }}<br>
+  {% endfor %}
+{% endblock %}

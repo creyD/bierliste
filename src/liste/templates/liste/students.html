@@ -1,3 +1,9 @@
-{% for student in students %}
-  <a href="{% url 'offerings' student.student_ID %}"><button>{{ student.nickname }}</button></a>
-{% endfor %}
+{% extends 'master.html' %}
+
+{% block title %}Bierliste - Nutzerliste{% endblock %}
+
+{% block content %}
+  {% for student in students %}
+    <a href="{% url 'offerings' student.student_ID %}"><button>{{ student.nickname }}</button></a>
+  {% endfor %}
+{% endblock %}
