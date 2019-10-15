@@ -26,7 +26,7 @@
     }
   </style>
 
-  Aktueller Kunde: #{{ student.student_ID }} {% if student.nickname %}{{ student.nickname }}{% endif %}
+  Aktueller Kunde: {% if student.nickname %}{{ student.nickname }}{% else %}Gast{% endif %} (#{{ student.student_ID }})
   <br>
 
   <div id="first_page">
@@ -46,4 +46,12 @@
   </div>
 
   <button onclick="changeView()">-></button>
+
+  {% if student.nickname %}
+  <a href="{% url 'pay' student.student_ID %}"><button>Einzahlen/ Auszahlen</button></a>
+  <a href="{% url 'ranking' %}"><button>Bierliste</button></a>
+  {% endif %}
+
+  <br>
+  <a href="{% url 'home' %}"><button>Zurück zur Startseite</button></a>
 {% endblock %}

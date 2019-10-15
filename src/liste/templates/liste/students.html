@@ -6,4 +6,6 @@
   {% for student in students %}
     <a href="{% url 'offerings' student.student_ID %}"><button>{{ student.nickname }}</button></a>
   {% endfor %}
+  <br>
+  <a href="{% url 'home' %}"><button>Zurück zur Startseite</button></a>
 {% endblock %}

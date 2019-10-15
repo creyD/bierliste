@@ -95,3 +95,55 @@ def ranking(request):
 
 def selector(request, student_ID, item_ID):
     return render(request, 'liste/selector.html', {'student_ID': student_ID, 'item': get_object_or_404(Item, item_ID=item_ID)})
+
+
+def pay(request, student_ID):
+    person = get_object_or_404(Student, student_ID=student_ID)
+    debt = 0
+    bills = StudentItems.objects.filter(student=person, payment_status=False)
+    for item in bills:
+        debt += item.transaction_price
+
+    context = {
+        'student': person,
+        'bills': bills,
+        'debt': debt
+    }
+    return render(request, 'liste/pay.html', context)
+
+
+def pay_now_confirm(request, transaction_ID):
+    context = {
+        'transaction': get_object_or_404(StudentItems, transaction_ID=transaction_ID)
+    }
+    return render(request, 'liste/pay_now.html', context)
+
+
+def pay_now(request, transaction_ID):
+    transaction = get_object_or_404(StudentItems, transaction_ID=transaction_ID)
+    transaction.payment_status = True
+    transaction.save()
+    return redirect(startbildschirm)
+
+
+def pay_all_confirm(request, student_ID):
+    person = get_object_or_404(Student, student_ID=student_ID)
+    debt = 0
+    bills = StudentItems.objects.filter(student=person, payment_status=False)
+    for item in bills:
+        debt += item.transaction_price
+
+    context = {
+        'student': person,
+        'bills': bills,
+        'debt': debt
+    }
+    return render(request, 'liste/pay_all.html', context)
+
+
+def pay_all(request, student_ID):
+    person = get_object_or_404(Student, student_ID=student_ID)
+    for item in StudentItems.objects.filter(student=person, payment_status=False):
+        item.payment_status = True
+        item.save()
+    return redirect(startbildschirm)

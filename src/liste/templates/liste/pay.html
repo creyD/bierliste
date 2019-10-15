@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+
+{% block title %}Bierliste - Bezahlung{% endblock %}
+
+{% block content %}
+<h2>Bezahlung für {{ student.nickname }}</h2>
+{% if debt > 0 %}
+<h3>Unbezahlte Transaktionen</h3>
+<ul>
+  {% for item in bills %}
+    <li>
+      #{{ item.transaction_ID }} ({{ item.transaction_date }}): {{ item.transaction_price }}€
+      <a href="{% url 'pay_now' item.transaction_ID %}"><button>Bezahlen</button></a>
+    </li>
+  {% endfor %}
+</ul>
+
+<h3>Jetzt bezahlen</h3>
+<a href="{% url 'pay_all' student.student_ID %}"><button>Alle bezahlen</button></a>
+{% else %}
+Keine offenen Rechnungen
+{% endif %}
+<br>
+<a href="{% url 'home' %}"><button>Zurück zur Startseite</button></a>
+{% endblock %}
