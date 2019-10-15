@@ -4,28 +4,47 @@
 
 {% block header %}
 <script type="text/javascript">
+  var number_field = document.getElementById('number');
+
     function minus(){
-      if (document.getElementById('number').value > 1){
-        document.getElementById('number').value--;
+      var number_field = document.getElementById('number');
+      if (number_field.value > 1){
+        number_field.value--;
+        calcPrice(number_field.value);
       }
     }
 
     function plus(){
-      document.getElementById('number').value++;
+      var number_field = document.getElementById('number');
+      number_field.value++;
+      calcPrice(number_field.value);
     }
 
     function confirm(){
       var item_count = document.getElementById('number').value;
-      window.location = {{ item_ID }} + '_' + item_count;
+      var bar = document.getElementById('bar');
+      if (bar.checked) {
+        window.location = {{ item.item_ID }} + '_' + item_count + '_1';
+      } else {
+        window.location = {{ item.item_ID }} + '_' + item_count + '_0';
+      }
+    }
+
+    function calcPrice(value){
+      var price = {{ item.item_price }};
+      document.getElementById('price_tag').innerHTML = price * value;
     }
 </script>
 {% endblock %}
 
 {% block content %}
 Menge wählen:
-  <button onclick="minus()">-</button><input value="1" id="number" type="text"></input><button onclick="plus()">+</button>
+  <button onclick="minus()">-</button><input onchange="calcPrice(this.value)" value="1" id="number" type="text"></input><button onclick="plus()">+</button>
 
-  <button onclick="confirm()">Bestätigen</button>
+  <p>Preis: <span id="price_tag">{{ item.item_price }}</span>€</p>
 
+  <p>Bar bezahlt:<input id="bar" type="checkbox"></input></p>
+
+  <button onclick="confirm()">Kauf Bestätigen</button>
   <a href="{% url 'home' %}"><button>Zurück zur Startseite</button></a>
 {% endblock %}

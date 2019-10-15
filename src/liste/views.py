@@ -29,10 +29,15 @@ def student_overview(request):
     return render(request, 'liste/students.html', context)
 
 
-def order(request, student_ID, item_ID, count):
+def order(request, student_ID, item_ID, count, payed):
     student = get_object_or_404(Student, student_ID=student_ID)
     item = get_object_or_404(Item, item_ID=item_ID)
-    StudentItems.objects.create(student=student, item=item, transaction_price=item.item_price * count, item_count=count)
+    bill = StudentItems.objects.create(student=student, item=item, transaction_price=item.item_price * count, item_count=count)
+
+    if payed == 1:
+        bill.payment_status = True
+        bill.save()
+
     return redirect(startbildschirm)
 
 
@@ -89,4 +94,4 @@ def ranking(request):
 
 
 def selector(request, student_ID, item_ID):
-    return render(request, 'liste/selector.html', {'student_ID': student_ID, 'item_ID': item_ID})
+    return render(request, 'liste/selector.html', {'student_ID': student_ID, 'item': get_object_or_404(Item, item_ID=item_ID)})
