@@ -17,8 +17,3 @@ class CreateItem(forms.ModelForm):
     class Meta:
         model = Item
         exclude = ['item_ID']
-
-
-class UpdateName(forms.Form):
-    # Wie in models.py festgelegt sind 100 Zeichen maximale Namenlänge
-    nickname = forms.CharField(label="Name eingeben:", max_length=100)

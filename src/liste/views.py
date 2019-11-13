@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Student, Item, StudentItems
-from .forms import UpdateName, UpdateStudent, CreateItem
+from .forms import UpdateStudent, CreateItem
 
 
 def startbildschirm(request):
@@ -45,18 +45,13 @@ def settings(request):
     return render(request, 'liste/settings.html')
 
 
-def student_add(request, card_number):
-    student, created = Student.objects.get_or_create(card_ID=card_number)
-    return render(request, 'liste/created_s1.html', {'student': student, 'created': created, 'form': UpdateName()})
-
-
-def student_confirm(request, student_ID):
-    form = UpdateName(request.POST or None)
+def simpleAdd(request):
+    form = UpdateStudent(request.POST or None)
+    student = Student.objects.create()
     if request.method == 'POST' and form.is_valid():
-        student = get_object_or_404(Student, student_ID=student_ID)
-        student.nickname = form.cleaned_data['nickname']
-        student.save()
-    return redirect(startbildschirm)
+        form.save()
+        return redirect(startbildschirm)
+    return render(request, 'liste/created.html', {'student': student, 'form': form})
 
 
 def student_edit(request, student_ID):
@@ -70,7 +65,6 @@ def student_edit(request, student_ID):
 
 def createItem(request):
     form = CreateItem(request.POST or None)
-
     if request.method == 'POST':
         if form.is_valid():
             form.save()

@@ -3,16 +3,11 @@
 {% block title %}Bierliste - Hinzufügen{% endblock %}
 
 {% block content %}
-  {% if created %}
   Student #{{ student.student_ID }} erfolgreich angelegt.
-  {% else %}
-  Student #{{ student.student_ID }} bereits in der Datenbank.
-  {% endif %}
-  Kartennummer: {{ student.card_ID }}
 
-  <form role="from" id="settingsForm" method="post" action="{% url 'addName' student.student_ID %}" enctype="multipart/form-data">
+  <form role="from" id="settingsForm" method="post" action="{% url 'updateStudent' student.student_ID %}" enctype="multipart/form-data">
   {% csrf_token %}
-  Namen eingeben: {{ form }}
+  {{ form.as_p }}
   <button type="submit">Bestätigen</button>
   </form>
 
