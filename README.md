@@ -1,7 +1,5 @@
 # Bierliste/ Beerlist
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a58d5469e6b41988c78cedae96ff42e)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=creyD/bierliste&amp;utm_campaign=Badge_Grade)
-
 # Content
 
 1. Installation (DE)
